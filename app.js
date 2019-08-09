@@ -19,9 +19,9 @@ app.use('/inverter/:str', (req, res) => {
 
 app.use('/cpf/:cpf', (req, res) => {
     let cpf = req.params.cpf;
-    // Deixo pra vcs! 
-    cpf = cpf.split('',1);
-    res.json(cpf);
+    cpf = cpf.replace(/\D/g, '');
+    const validarCpf = require('validar-cpf');
+    res.json(validarCpf(cpf));
     res.send('Validador de CPF');
 });
 
